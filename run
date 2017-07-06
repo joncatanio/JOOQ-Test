@@ -1,6 +1,5 @@
 #!/bin/bash
 CLASSPATH="target/jooqtest-1.0-SNAPSHOT-jar-with-dependencies.jar:"
-CLASSPATH+="../lib/mariadb-connector/mariadb-java-client-2.0.3.jar:"
 CLASSPATH+="."
 
 echo "CLASSPATH: ${CLASSPATH}"

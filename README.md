@@ -40,7 +40,9 @@ $ ./run
 --------------------------------------------------------------------------------
 Dependencies:
 
-The `run` script simply builds the Java classpath and executes the program. The
-classpath includes the MySQL connector that will be used, this needs to be
-downloaded manually and either placed where the `run` script looks or the `run`
-script needs to be modified.
+The `run` script simply builds the Java classpath and executes the program.
+All dependencies should be packaged in the
+`jooqtest-1.0-SNAPSHOT-jar-with-dependencies.jar` if the
+`mvn package assembly:assembly` command was run. Using the 
+`jooqtest-1.0-SNAPSHOT.jar` file would require the classpath to be updated, in
+the `run` script, with the appropriate dependencies.
