@@ -46,6 +46,7 @@
             </configuration>
          </plugin>
 
+         <!-- Used to group all JOOQ dependencies into one jar -->
          <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <configuration>
