@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <groupId>com.joncatanio.jooqtest</groupId>
+   <artifactId>jooqtest</artifactId>
+   <packaging>jar</packaging>
+   <version>1.0-SNAPSHOT</version>
+
+   <name>jooqtest</name>
+   <url>http://maven.apache.org</url>
+
+   <dependencies>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>3.8.1</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jooq</groupId>
+         <artifactId>jooq</artifactId>
+         <version>3.9.3</version>
+      </dependency>
+      <dependency>
+         <groupId>org.jooq</groupId>
+         <artifactId>jooq-meta</artifactId>
+         <version>3.9.3</version>
+      </dependency>
+      <dependency>
+         <groupId>org.jooq</groupId>
+         <artifactId>jooq-codegen</artifactId>
+         <version>3.9.3</version>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.6.1</version>
+            <configuration>
+               <source>1.8</source>
+               <target>1.8</target>
+            </configuration>
+         </plugin>
+
+         <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+               <descriptorRefs>
+                  <descriptorRef>jar-with-dependencies</descriptorRef>
+               </descriptorRefs>
+            </configuration>
+         </plugin>
+
+         <!-- JOOQ Schema Generation -->
+         <plugin>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen-maven</artifactId>
+            <version>3.9.3</version>
+
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>generate</goal>
+                  </goals>
+               </execution>
+            </executions>
+
+            <dependencies>
+               <dependency>
+                  <groupId>org.mariadb.jdbc</groupId>
+                  <artifactId>mariadb-java-client</artifactId>
+                  <version>2.0.3</version>
+               </dependency>
+            </dependencies>
+
+            <configuration>
+               <!-- Configure the database connection here -->
+               <jdbc>
+                  <driver>org.mariadb.jdbc.Driver</driver>
+                  <url>jdbc:mariadb://localhost:3306/test</url>
+                  <user>testUser</user>
+                  <password>testpass</password>
+               </jdbc>
+
+               <generator>
+                  <database>
+                     <!-- The database type. The format here is:
+                          org.util.[database].[database]Database -->
+                     <name>org.jooq.util.mariadb.MariaDBDatabase</name>
+
+                     <!-- The database schema (or in the absence of schema
+                          support, in your RDBMS this can be the owner, user,
+                          database name) to be generated -->
+                     <inputSchema>test</inputSchema>
+
+                     <!-- All elements that are generated from your schema (A
+                          Java regular expression. Use the pipe to separate
+                          several expressions) Watch out for case-sensitivity.
+                          Depending on your database, this
+                          might be important! -->
+                     <includes>.*</includes>
+
+                     <!-- All elements that are excluded from your schema (A
+                          Java regular expression. Use the pipe to separate
+                          several expressions). Exludes match before includes,
+                          i.e. excludes have a higher priority -->
+                     <excludes></excludes>
+
+                  </database>
+
+                  <target>
+                     <!-- The destination package of your generated classes
+                          (within the destiniation directory) -->
+                     <packageName>db.generated</packageName>
+
+                     <!-- The destination directory of your generated classes.
+                          Using Maven directory layout here -->
+                     <directory>target/generated-sources/jooq</directory>
+                  </target>
+               </generator>
+            </configuration>
+
+         </plugin>
+      </plugins>
+   </build>
+</project>
