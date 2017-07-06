@@ -5,7 +5,7 @@ JOOQ Test with simple database schema
 To Run:
 
 ```
-$ mvn clean install assembly:assembly
+$ mvn clean package assembly:assembly
 $ ./run
 ```
 
@@ -33,7 +33,7 @@ the `test` database built into MariaDB/MySQL.
 5.) Run the mvn build and `run` script.
 
 ```
-$ mvn clean install assembly:assembly
+$ mvn clean package assembly:assembly
 $ ./run
 ```
 
