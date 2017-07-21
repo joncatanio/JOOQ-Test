@@ -12,12 +12,12 @@ public class App {
    public static void main(String[] args) {
       String userName = "testUser";
       String password = "testpass";
-      String url = "jdbc:mariadb://localhost:3306/test";
+      String url = "jdbc:mysql://localhost:3306/test";
 
       try (Connection conn = DriverManager.getConnection(url, userName,
          password)) {
 
-         DSLContext create = DSL.using(conn, SQLDialect.MARIADB);
+         DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
 
          Result<Record> result = create.select().from(USERS).fetch();
          System.out.println("----- Simple SELECT -----");

@@ -33,9 +33,9 @@
          <version>3.9.3</version>
       </dependency>
       <dependency>
-         <groupId>org.mariadb.jdbc</groupId>
-         <artifactId>mariadb-java-client</artifactId>
-         <version>2.0.3</version>
+         <groupId>mysql</groupId>
+         <artifactId>mysql-connector-java</artifactId>
+         <version>5.1.30</version>
       </dependency>
    </dependencies>
 
@@ -77,17 +77,17 @@
 
             <dependencies>
                <dependency>
-                  <groupId>org.mariadb.jdbc</groupId>
-                  <artifactId>mariadb-java-client</artifactId>
-                  <version>2.0.3</version>
+                  <groupId>mysql</groupId>
+                  <artifactId>mysql-connector-java</artifactId>
+                  <version>5.1.30</version>
                </dependency>
             </dependencies>
 
             <configuration>
                <!-- Configure the database connection here -->
                <jdbc>
-                  <driver>org.mariadb.jdbc.Driver</driver>
-                  <url>jdbc:mariadb://localhost:3306/test</url>
+                  <driver>com.mysql.jdbc.Driver</driver>
+                  <url>jdbc:mysql://localhost:3306/test</url>
                   <user>testUser</user>
                   <password>testpass</password>
                </jdbc>
@@ -96,7 +96,7 @@
                   <database>
                      <!-- The database type. The format here is:
                           org.util.[database].[database]Database -->
-                     <name>org.jooq.util.mariadb.MariaDBDatabase</name>
+                     <name>org.jooq.util.mysql.MySQLDatabase</name>
 
                      <!-- The database schema (or in the absence of schema
                           support, in your RDBMS this can be the owner, user,
